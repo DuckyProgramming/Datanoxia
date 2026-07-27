@@ -17,7 +17,7 @@ slides=[
             {text:`A Cyclical Struggle`,size:20},
             {text:`A Cyclical Struggle`,size:10},
             //{text:`Pictured: Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia`,size:15},
-            {text:`Pictured: Major General Enrico Pitassi Manella`,size:20},
+            {text:`Pictured: Major General Enrico Pitassi Manella (Source: generals.dk)`,size:20},
             {text:`Is more information always a good thing?`,size:40},
             {text:`• A simple question`,size:25},
             {text:`• Why did researching this on the internet take me two months?`,size:25},
@@ -32,7 +32,7 @@ slides=[
         text:[
             {text:`Definition`,size:80},
             //{text:`Pictured: Major General Enrico Pitassi Manella (the Tobruk garrison commander)`,size:15},
-            {text:`Pictured: A Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia`,size:20},
+            {text:`Pictured: A Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia (Source: Wikipedia)`,size:20},
             {text:`(Noun)`,size:40},
             {text:`1. The diminishing quality of public information caused by the increase in its volume`,size:25},
             {text:`2. The difficulties caused by such a loss of information`,size:25},
@@ -48,7 +48,7 @@ slides=[
         text:[
             {text:`A Cambrian Explosion`,size:80},
             //{text:`Pictured: Dickinsonia Costata`,size:15},
-            {text:`Pictured: Dickinsonia Costata`,size:20},
+            {text:`Pictured: Dickinsonia Costata (Source: Verisimilus)`,size:20},
             {text:`The other kind of history`,size:40},
             {text:`• Evolutionary radiation and extinction`,size:25},
             {text:`• An episodic pattern: another kind of cyclical struggle`,size:25},
@@ -62,7 +62,7 @@ slides=[
         text:[
             {text:`Resolutions`,size:80},
             //{text:`Pictured: Tobruk defenses`,size:15},
-            {text:`Pictured: Tobruk defenses`,size:20},
+            {text:`Pictured: Tobruk defenses (Source: Montanari, M)`,size:20},
             {text:`• The end of the Tobruk tale`,size:25},
             {text:`• Thoughts on the seperatist solution`,size:25},
             {text:`• Personal, partial solutions`,size:25},
@@ -73,9 +73,9 @@ slides=[
     },{
         text:[
             {text:`Works Cited`,size:80},
-            {text:`Pictured: Fall of Tobruk, 1941`,size:20},
+            {text:`Pictured: Fall of Tobruk, 1941 (Source: Montanari, M)`,size:20},
             //{text:`Images: Original`,size:15},
-            {text:`Images: Original`,size:20},
+            //{text:`Images: Original`,size:20},
             {text:
 `La prima offensiva britannica in Africa settentrionale (ottobre 1940 – febbraio 1941).
 Vol. I. Rome: Esercito. Corpo di stato maggiore. Ufficio storico. 1979. OCLC 68638762`
