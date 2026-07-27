@@ -101,7 +101,7 @@ queue=[]
 letters=[]
 time=0
 //tick=600
-slide=-1
+slide=-2
 cLine=0
 grav=1
 spin=0
@@ -147,7 +147,6 @@ class letter{
                 this.y=this.goalY
                 this.velX=0
                 this.velY=grav
-                this.stuck=random(0,60)
             }else{
                 let dir=atan2(this.goalX-this.x,this.goalY-this.y)+this.deviation
                 this.velX+=sin(dir)*2
@@ -158,6 +157,7 @@ class letter{
                 this.x+=this.velX
                 this.y+=this.velY
                 this.spin=0
+                this.stuck=random(1,60)
             }
         }else if(this.stuck>0){
             this.stuck--
@@ -290,7 +290,7 @@ function draw(){
     }
     spin=time%120>=80&&time%120<90?sin((time%120-80)*18)*3:0
     time++
-    if(time%(slide>=0&&slide<slides.length&&slides[slide].speed?2:3)==0&&slide<slides.length&&queue.length>0){
+    if(slide>=-1&&time%(slide>=0&&slide<slides.length&&slides[slide].speed?2:3)==0&&slide<slides.length&&queue.length>0){
         if(queue[0].slide<=slide+1&&(slide<0||cLine>=slides[slide].text.length-1||queue[0].slide<=slide)){
             if(tick%5==0){
                 letters.push(new letter(loose[floor(random(0,loose.length))],floor(random(2,9))*10,-2,-2,0,0))
