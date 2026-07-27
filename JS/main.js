@@ -4,7 +4,8 @@ slides=[
             {text:`DATANOXIA`,size:80},
             {text:`(ˈdeɪtəˈnɒksiə)`,size:25},
             {text:`Hayden Qi`,size:40},
-            {text:`English 1102`,size:15},
+            //{text:`English 1102`,size:15},
+            {text:`English 1102`,size:20},
             {text:`The Information Age and the Anthropocene`,size:25},
         ],
         img:-1,
@@ -15,20 +16,23 @@ slides=[
             {text:`A Cyclical Struggle`,size:40},
             {text:`A Cyclical Struggle`,size:20},
             {text:`A Cyclical Struggle`,size:10},
-            {text:`Pictured: Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia`,size:15},
+            //{text:`Pictured: Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia`,size:15},
+            {text:`Pictured: Major General Enrico Pitassi Manella`,size:20},
             {text:`Is more information always a good thing?`,size:40},
             {text:`• A simple question`,size:25},
-            {text:`• Why did research this on the internet take me two months?`,size:25},
+            {text:`• Why did researching this on the internet take me two months?`,size:25},
             {text:`• The depth problem - even correct information can be harmful`,size:25},
             {text:`• The cognitive paradox of Wikipedia`,size:25},
             {text:`• The Ufficio Storico Esercito - a shaky foundation`,size:25},
         ],
         img:0,
+        imgTick:4,
         speed:false,
     },{
         text:[
             {text:`Definition`,size:80},
-            {text:`Pictured: Major General Enrico Pitassi Manella (the Tobruk garrison commander)`,size:15},
+            //{text:`Pictured: Major General Enrico Pitassi Manella (the Tobruk garrison commander)`,size:15},
+            {text:`Pictured: A Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia`,size:20},
             {text:`(Noun)`,size:40},
             {text:`1. The diminishing quality of public information caused by the increase in its volume`,size:25},
             {text:`2. The difficulties caused by such a loss of information`,size:25},
@@ -38,11 +42,13 @@ slides=[
             {text:`• Anoxia: The lack of oxygen; suffocation`,size:25},
         ],
         img:1,
+        imgTick:1,
         speed:false,
     },{
         text:[
             {text:`A Cambrian Explosion`,size:80},
-            {text:`Pictured: Dickinsonia Costata`,size:15},
+            //{text:`Pictured: Dickinsonia Costata`,size:15},
+            {text:`Pictured: Dickinsonia Costata`,size:20},
             {text:`The other kind of history`,size:40},
             {text:`• Evolutionary radiation and extinction`,size:25},
             {text:`• An episodic pattern: another kind of cyclical struggle`,size:25},
@@ -50,36 +56,42 @@ slides=[
             {text:`• Will history repeat itself?`,size:25},
         ],
         img:2,
+        imgTick:1,
         speed:false,
     },{
         text:[
             {text:`Resolutions`,size:80},
-            {text:`Pictured: Tobruk defenses`,size:15},
+            //{text:`Pictured: Tobruk defenses`,size:15},
+            {text:`Pictured: Tobruk defenses`,size:20},
             {text:`• The end of the Tobruk tale`,size:25},
             {text:`• Thoughts on the seperatist solution`,size:25},
             {text:`• Personal, partial solutions`,size:25},
         ],
         img:3,
+        imgTick:1,
         speed:false,
     },{
         text:[
             {text:`Works Cited`,size:80},
-            {text:`Images: Original`,size:15},
+            {text:`Pictured: Fall of Tobruk, 1941`,size:20},
+            //{text:`Images: Original`,size:15},
+            {text:`Images: Original`,size:20},
             {text:
 `La prima offensiva britannica in Africa settentrionale (ottobre 1940 – febbraio 1941).
 Vol. I. Rome: Esercito. Corpo di stato maggiore. Ufficio storico. 1979. OCLC 68638762`
-            ,size:20},
+            ,size:18},
             {text:
 `He, T. (2017). Isotopic constraints on the palaeoenvironmental conditions during the cambrian radiation of animals (Order No. 11001456).
 Available from ProQuest Dissertations & Theses A&I; ProQuest One Academic. (2116938004).
 Retrieved from https://www.proquest.com/dissertations-theses/isotopic-constraints-on-palaeoenvironmental/docview/2116938004/se-2`
-            ,size:20},
+            ,size:18},
             {text:
 `Pilgrim, C., Guo, W., & Hills, T. T. (2021). Information foraging in the attention economy.
 St. Louis: Retrieved from https://www.proquest.com/working-papers/information-foraging-attention-economy/docview/2585952743/se-2`
-            ,size:20},
+            ,size:18},
         ],
-        img:-1,
+        img:4,
+        imgTick:1,
         speed:true,
     },
 ]
@@ -98,6 +110,7 @@ lift=0
 img={
     pos:0,
     slide:0,
+    fall:0,
 }
 class letter{
     constructor(text,size,slide,line,goalX,goalY){
@@ -186,6 +199,7 @@ function preload(){
         loadImage(`./Assets/2.png`),
         loadImage(`./Assets/3.png`),
         loadImage(`./Assets/4.png`),
+        loadImage(`./Assets/5.png`),
     ]
 }
 function setup(){
@@ -262,6 +276,9 @@ function mousePressed(){
 }
 function draw(){
     background(0)
+    if(slides[img.slide].img!=-1){
+        image(imgs[slides[img.slide].img],width+360*cos(img.pos),height/2+img.fall*img.fall*grav*0.5,360,360)
+    }
     letters.forEach(letter=>letter.display())
     letters.forEach(letter=>letter.update())
     for(let a=0,la=letters.length;a<la;a++){
@@ -287,16 +304,15 @@ function draw(){
             tick++
         }
     }
-    if(slides[img.slide].img!=-1){
-        image(imgs[slides[img.slide].img],width+360*cos(img.pos),height/2,360,360)
-    }
-    if(img.slide<slide&&slide<slides.length){
+    if(slide>=slides.length){
+        img.fall++
+    }else if(img.slide<slide&&slide<slides.length){
         if(img.pos>0){
             img.pos-=2
         }else{
             img.slide++
         }
-    }else if(img.pos<180){
+    }else if(img.pos<180&&cLine>=slides[img.slide].imgTick){
         img.pos+=2
     }
     /*if(tick>0){
