@@ -15,7 +15,7 @@ slides=[
             {text:`A Cyclical Struggle`,size:40},
             {text:`A Cyclical Struggle`,size:20},
             {text:`A Cyclical Struggle`,size:10},
-            {text:`Pictured: [PLACEHOLDER]`,size:15},
+            {text:`Pictured: Laptop Showing Wikipedia Showing a Laptop Showing Wikipedia`,size:15},
             {text:`Is more information always a good thing?`,size:40},
             {text:`• A simple question`,size:25},
             {text:`• Why did research this on the internet take me two months?`,size:25},
@@ -28,7 +28,7 @@ slides=[
     },{
         text:[
             {text:`Definition`,size:80},
-            {text:`Pictured: [PLACEHOLDER]`,size:15},
+            {text:`Pictured: Major General Enrico Pitassi Manella (the Tobruk garrison commander)`,size:15},
             {text:`(Noun)`,size:40},
             {text:`1. The diminishing quality of public information caused by the increase in its volume`,size:25},
             {text:`2. The difficulties caused by such a loss of information`,size:25},
@@ -37,33 +37,34 @@ slides=[
             {text:`• Data: plural of datum, information`,size:25},
             {text:`• Anoxia: The lack of oxygen; suffocation`,size:25},
         ],
-        img:0,
+        img:1,
         speed:false,
     },{
         text:[
             {text:`A Cambrian Explosion`,size:80},
-            {text:`Pictured: [PLACEHOLDER]`,size:15},
+            {text:`Pictured: Dickinsonia Costata`,size:15},
             {text:`The other kind of history`,size:40},
             {text:`• Evolutionary radiation and extinction`,size:25},
             {text:`• An episodic pattern: another kind of cyclical struggle`,size:25},
             {text:`• Foraging for attention in a competitive world`,size:25},
             {text:`• Will history repeat itself?`,size:25},
         ],
-        img:0,
+        img:2,
         speed:false,
     },{
         text:[
             {text:`Resolutions`,size:80},
-            {text:`Pictured: [PLACEHOLDER]`,size:15},
+            {text:`Pictured: Tobruk defenses`,size:15},
             {text:`• The end of the Tobruk tale`,size:25},
             {text:`• Thoughts on the seperatist solution`,size:25},
             {text:`• Personal, partial solutions`,size:25},
         ],
-        img:0,
+        img:3,
         speed:false,
     },{
         text:[
             {text:`Works Cited`,size:80},
+            {text:`Images: Original`,size:15},
             {text:
 `La prima offensiva britannica in Africa settentrionale (ottobre 1940 – febbraio 1941).
 Vol. I. Rome: Esercito. Corpo di stato maggiore. Ufficio storico. 1979. OCLC 68638762`
@@ -180,7 +181,11 @@ class letter{
 }
 function preload(){
     imgs=[
-        loadImage(`./Assets/placeholder.png`)
+        //loadImage(`./Assets/placeholder.png`)
+        loadImage(`./Assets/1.png`),
+        loadImage(`./Assets/2.png`),
+        loadImage(`./Assets/3.png`),
+        loadImage(`./Assets/4.png`),
     ]
 }
 function setup(){
@@ -283,7 +288,7 @@ function draw(){
         }
     }
     if(slides[img.slide].img!=-1){
-        image(imgs[slides[img.slide].img],width+240*cos(img.pos),height/2,360,360)
+        image(imgs[slides[img.slide].img],width+360*cos(img.pos),height/2,360,360)
     }
     if(img.slide<slide&&slide<slides.length){
         if(img.pos>0){
