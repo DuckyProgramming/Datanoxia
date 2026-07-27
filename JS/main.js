@@ -180,7 +180,7 @@ class letter{
 }
 function preload(){
     imgs=[
-        loadImage(`../Assets/placeholder.png`)
+        loadImage(`./Assets/placeholder.png`)
     ]
 }
 function setup(){
