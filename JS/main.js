@@ -119,7 +119,7 @@ img={
     slide:0,
     fall:0,
 }
-obsidian=[[],[],[]]
+//obsidian=[[],[],[]]
 class letter{
     constructor(text,size,slide,line,goalX,goalY){
         this.text=text
@@ -190,6 +190,9 @@ class letter{
                 if(abs(this.velY)>grav){
                     this.velY*=-0.25
                     this.y+=this.velY
+                    if(slide==-2){
+                        this.spent=true
+                    }
                 }else{
                     this.y=level
                     this.velX=time%120<80?4:0
@@ -223,17 +226,17 @@ function setup(){
     textAlign(LEFT,BOTTOM)
     imageMode(CENTER)
     angleMode(DEGREES)
-    for(let a=0,la=11;a<la;a++){
+    /*for(let a=0,la=11;a<la;a++){
         obsidian[0].push(random(0,50))
         obsidian[1].push(random(0.225,0.275))
         obsidian[2].push(random(0,1))
-    }
+    }*/
     slides.forEach((slide,index)=>{
         let y=100
         slide.text.forEach((text,index2)=>{
             let clump=[]
             let sum=0
-            let x=150-text.size*0.375
+            let x=150-text.size*0.25
             textSize(text.size)
             y+=text.size
             for(let a=0,la=text.text.length;a<la;a++){
@@ -276,8 +279,8 @@ function next(){
                     time=0
                 }
             }
-        }else if(letters.some(letter=>letter.slide==-2)){
-            letters.filter(letter=>letter.slide==-2).forEach(letter=>{
+        }else if(letters.some(letter=>letter.slide==-3)){
+            letters.filter(letter=>letter.slide==-3).forEach(letter=>{
                 letter.velX=random(-2.5,2.5)
                 letter.velY=-random(0,50)
                 letter.spent=true
@@ -315,7 +318,7 @@ function draw(){
     spin=time%120>=80&&time%120<90?sin((time%120-80)*18)*3:0
     time++
     if(slide>=-1){
-        if(time%(slide>=0&&slide<slides.length&&slides[slide].speed?2:max(3,round(15-time/60)))==0&&slide<slides.length&&queue.length>0){
+        if(time>=60&&time%(slide>=0&&slide<slides.length&&slides[slide].speed?2:max(3,round(15-time/60)))==0&&slide<slides.length&&queue.length>0){
             if(queue[0].slide<=slide+1&&(slide<0||cLine>=slides[slide].text.length-1||queue[0].slide<=slide)){
                 if(tick%5==0){
                     letters.push(new letter(loose[floor(random(0,loose.length))],floor(random(4,13))*5,-3,-3,0,0))
@@ -344,28 +347,46 @@ function draw(){
             start-=0.5
         }
     }else if(time%15==0){
-        if(floor(random(0,2))==0){
+        let letterSize=floor(random(5,11))*2.5
+        letters.push(new letter(loose[floor(random(0,loose.length))],letterSize,-3,-3,0,0))
+        letters[letters.length-1].x=random(0,width)-letterSize*0.375
+        letters[letters.length-1].y=0
+        //letters[letters.length-1].spent=true
+        /*if(floor(random(0,2))==0){
             let pos=floor(random(0,5))
             let size=floor(random(5,11))*2.5
             letters.push(new letter(loose[floor(random(0,loose.length))],size,-3,-3,0,0))
             letters[letters.length-1].x=(pos+0.5)/5*width-size*0.375
             letters[letters.length-1].y=130+obsidian[0][pos]
-            letters[letters.length-1].spent=true
+            //letters[letters.length-1].spent=true
         }else{
             let pos=floor(random(0,6))
             let size=floor(random(4,9))*2.5
             letters.push(new letter(loose[floor(random(0,loose.length))],size,-3,-3,0,0))
             letters[letters.length-1].x=pos/5*width-size*0.375
             letters[letters.length-1].y=80+obsidian[0][pos+5]
-            letters[letters.length-1].spent=true
-        }
+            //letters[letters.length-1].spent=true
+        }*/
     }
     if(start>0){
         push()
         translate(0,-600-cos(start)*600)
+        fill(0)
         stroke(255)
         strokeWeight(10)
-        for(let a=0,la=5;a<la;a++){
+        beginShape()
+        vertex(-100,-50)
+        vertex(0,100)
+        for(let a=0,la=8;a<la;a++){
+            bezierVertex(
+                (a+0.2)/la*width,150+sin((a+0.2)/la*180)*50,
+                (a+0.8)/la*width,150+sin((a+0.8)/la*180)*50,
+                (a+1)/la*width,100+sin((a+1)/la*180)*50,
+            )
+        }
+        vertex(width+100,-50)
+        endShape()
+        /*for(let a=0,la=5;a<la;a++){
             line((a+obsidian[1][a])/la*width,0,(a+obsidian[1][a])/la*width,100+obsidian[0][a])
             line((a+1-obsidian[1][a])/la*width,0,(a+1-obsidian[1][a])/la*width,100+obsidian[0][a])
             line(a/la*width,80+obsidian[0][a+5],(a+obsidian[1][a])/la*width,50+obsidian[0][a+5])
@@ -373,7 +394,7 @@ function draw(){
             line((a+0.5)/la*width,130+obsidian[0][a],(a+obsidian[1][a])/la*width,100+obsidian[0][a])
             line((a+0.5)/la*width,130+obsidian[0][a],(a+1-obsidian[1][a])/la*width,100+obsidian[0][a])
             line((a+1-0.375*obsidian[2][a]-obsidian[1][a])/la*width,75-50*obsidian[2][a]+obsidian[0][a],(a+1-obsidian[1][a])/la*width,75+obsidian[0][a])
-        }
+        }*/
         pop()
     }
     /*if(tick>0){
