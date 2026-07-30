@@ -156,7 +156,13 @@ class letter{
     }
     update(){
         this.time++
-        if(this.slide==slide&&this.line<=cLine){
+        if(this.slide==-4){
+            if(this.time>this.delay){
+                this.x+=10
+                this.x+=sin((this.time-this.delay)*13)*this.deviation*0.2
+                this.y+=sin((this.time-this.delay)*6)*this.deviation+cos((this.time-this.delay)*13)*this.deviation*0.2
+            }
+        }else if(this.slide==slide&&this.line<=cLine){
             if(dist(this.x,this.y,this.goalX,this.goalY)<=sqrt(this.velX**2+this.velY**2)*0.6){
                 this.x=this.goalX
                 this.y=this.goalY
@@ -346,27 +352,41 @@ function draw(){
         if(start>0){
             start-=0.5
         }
-    }else if(time%15==0){
-        let letterSize=floor(random(5,11))*2.5
-        letters.push(new letter(loose[floor(random(0,loose.length))],letterSize,-3,-3,0,0))
-        letters[letters.length-1].x=random(0,width)-letterSize*0.375
-        letters[letters.length-1].y=0
-        //letters[letters.length-1].spent=true
-        /*if(floor(random(0,2))==0){
-            let pos=floor(random(0,5))
-            let size=floor(random(5,11))*2.5
-            letters.push(new letter(loose[floor(random(0,loose.length))],size,-3,-3,0,0))
-            letters[letters.length-1].x=(pos+0.5)/5*width-size*0.375
-            letters[letters.length-1].y=130+obsidian[0][pos]
+    }else{
+        if(time%15==0){
+            let letterSize=floor(random(5,11))*2.5
+            letters.push(new letter(loose[floor(random(0,loose.length))],letterSize,-3,-3,0,0))
+            letters[letters.length-1].x=random(0,width)-letterSize*0.375
+            letters[letters.length-1].y=0
             //letters[letters.length-1].spent=true
-        }else{
-            let pos=floor(random(0,6))
-            let size=floor(random(4,9))*2.5
-            letters.push(new letter(loose[floor(random(0,loose.length))],size,-3,-3,0,0))
-            letters[letters.length-1].x=pos/5*width-size*0.375
-            letters[letters.length-1].y=80+obsidian[0][pos+5]
-            //letters[letters.length-1].spent=true
-        }*/
+            /*if(floor(random(0,2))==0){
+                let pos=floor(random(0,5))
+                let size=floor(random(5,11))*2.5
+                letters.push(new letter(loose[floor(random(0,loose.length))],size,-3,-3,0,0))
+                letters[letters.length-1].x=(pos+0.5)/5*width-size*0.375
+                letters[letters.length-1].y=130+obsidian[0][pos]
+                //letters[letters.length-1].spent=true
+            }else{
+                let pos=floor(random(0,6))
+                let size=floor(random(4,9))*2.5
+                letters.push(new letter(loose[floor(random(0,loose.length))],size,-3,-3,0,0))
+                letters[letters.length-1].x=pos/5*width-size*0.375
+                letters[letters.length-1].y=80+obsidian[0][pos+5]
+                //letters[letters.length-1].spent=true
+            }*/
+        }
+        if(time%240==0){
+            let pos=random(0,height)
+            let letterSize=floor(random(5,11))*2.5
+            let deviation=random(3,5)*(floor(random(0,2))*2-1)
+            for(let a=0,la=floor(random(6,16));a<la;a++){
+                letters.push(new letter(loose[floor(random(0,loose.length))],letterSize,-4,-4,0,0))
+                letters[letters.length-1].x=-100
+                letters[letters.length-1].y=pos
+                letters[letters.length-1].delay=a*4
+                letters[letters.length-1].deviation=deviation
+            }
+        }
     }
     if(start>0){
         push()
